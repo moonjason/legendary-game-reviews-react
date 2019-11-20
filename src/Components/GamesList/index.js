@@ -6,7 +6,7 @@ function GamesList(props) {
         return(
             <div>
                 <Link to={`/games/${game.id}`}>
-                    Title: {game.name}
+                    <h1>{game.name}</h1>
                     <img style={{"width": "5rem"}} src={game.background_image}/>
                 </Link>
             </div>

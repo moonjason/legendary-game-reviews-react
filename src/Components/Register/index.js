@@ -13,7 +13,6 @@ class Register extends Component {
         this.setState({
             [e.currentTarget.name]: e.currentTarget.value
         })
-        console.log(this.state)
     }
 
     handleSubmit = async (e) => {
