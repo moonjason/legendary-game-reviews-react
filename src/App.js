@@ -6,7 +6,6 @@ import Register from './Components/Register'
 import Login from './Components/Login'
 import Nav from './Components/Nav'
 
-
 import './App.css';
 
 function App() {

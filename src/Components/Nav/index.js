@@ -3,13 +3,11 @@ import { NavLink, Switch } from 'react-router-dom'
 
 import Button from '../Button'
 
-import { 
-  NavBar, 
+import {
+  NavBar,
   Link,
   MainContainer,
- } from './style'
-
-
+} from './style'
 
 // const navStyleRight = {
 //   display: 'flex',
@@ -23,17 +21,11 @@ import {
 
 const Nav = () => {
   return (
-    <MainContainer>
-      <NavBar>
-        <div>
-          <a><NavLink to="/">Home</NavLink></a>
-        </div>
-        <div>
-          <a><Link color="red" to="/login">Login</Link></a>
-          <a><Link to="/register">Register</Link></a>
-        </div>
-      </NavBar>
-    </MainContainer>
+    <NavBar>
+      <Link exact to="/">Home</Link>
+      <Link exact to="/login">Login</Link>
+      <Link exact to="/register">Register</Link>
+    </NavBar>
   )
 }
 
