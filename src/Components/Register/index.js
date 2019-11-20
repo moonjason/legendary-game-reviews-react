@@ -7,6 +7,7 @@ class Register extends Component {
         username: '',
         password: '',
         email: '',
+        loggedIn: false
     }
 
     handleChange = (e) => {
@@ -31,6 +32,9 @@ class Register extends Component {
             console.log('Register Success')
             this.props.doUpdateCurrentUser(parsedResponse.data)
             this.props.history.push('/games')
+            this.setState({
+                loggedIn: true
+            })
         }
     }
 
