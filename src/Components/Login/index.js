@@ -25,7 +25,9 @@ class Login extends Component {
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
+                    <p>Username or E-mail:</p>
                     <input type="text" name="username" placeholder="Username or E-mail" onChange={this.handleChange}/>
+                    <p>Password:</p>
                     <input type="password" name="password" placeholder="Password"/>
                     <button type="submit">Login</button>
                 </form>
