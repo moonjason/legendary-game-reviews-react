@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <>
             Home Page
-            <NavLink to="/games/1">Browse through reviews</NavLink>
+            <NavLink to="/games">Browse through reviews</NavLink>
         </>
     )
 }
