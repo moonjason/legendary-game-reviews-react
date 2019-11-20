@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
-const Login = () => {
-    return (
-        <>
-            <input type="text" placeholder="Username"/>
-            <input type="password" placeholder="Password"/>
-        </>
-    )
+class Login extends Component {
+    state = {
+        username: '',
+    };
+
+    handleChange = (e) =>{ 
+        this.setState({
+            username: e.currentTarget.value
+        });
+        console.log(this.state);
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Handling Submit to Login')
+        // check if user exists in user OR email column of userstable 
+        //this.props.doUpdateCurrentUser(data)
+        // this.props.history.push('/main')
+    }
+
+    render() {
+        return (
+            <>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" name="username" placeholder="Username or E-mail" onChange={this.handleChange}/>
+                    <input type="password" name="password" placeholder="Password"/>
+                    <button type="submit">Login</button>
+                </form>
+            </>
+        )
+    }
 }
 
-export default Login;
+export default withRouter(Login);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom'
 
 import Home from './Components/Home'
@@ -9,17 +9,40 @@ import Nav from './Components/Nav'
 
 import './App.css';
 
-function App() {
+const My404 = () => {
   return (
-    <>
-      <Nav />
-      <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/register" component={Register}></Route>
-      </Switch>
-    </>
-  );
+    <div>
+      Error 404. You are Lost! 
+    </div>
+  )
+}
+
+class App extends Component {
+  state = {
+    currentUser: {}
+  }
+
+  doUpdateCurrentUser = user => {
+    this.setState({
+      currentUser: {
+        username: user.username
+      }
+    })
+  }
+
+  render() {
+    return (
+      <>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/login" render={() => <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
+          <Route exact path="/register" render={() => <Register doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
+          <Route component={My404} />
+        </Switch>
+      </>
+    );
+  }
 }
 
 export default App;
