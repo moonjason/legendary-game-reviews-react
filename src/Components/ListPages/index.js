@@ -1,15 +1,28 @@
 import React from "react"
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+
 
 function ListPages(props) {
-    const pages = [1, 2, 3, 4, 5].map((page,i=1) => {
+    const pages = [];
+    const populatePages = (num) => {
+        for(let i = 1; i < num+1; i++) {
+            pages.push(i);
+        }
+    }
+    populatePages(10)
+    const sendUser = page => {
+        props.history.push(`${page}`)
+        props.getGames()
+    }
+    const pageList = pages.map(page => {
         return(
-            <NavLink to={page} onClick={() => {props.changePage(page)}}>{i}</NavLink>
+            <button onClick={() => {sendUser(page)}}>{page}</button>
         )
     })
     return(
-        pages
+        pageList
     )
 }
 
-export default ListPages
+export default withRouter(ListPages)

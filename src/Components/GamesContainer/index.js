@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GamesList from "../GamesList"
 import ListPages from "../ListPages"
+import { withRouter } from "react-router-dom"
 
 class GameContainer extends Component{
   state = {
@@ -11,7 +12,8 @@ class GameContainer extends Component{
   }
   getGames = async () => {
       try {
-        const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/${this.props.page}`, {
+        console.log(this.props.history.location.pathname, "this pathname")
+        const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1${this.props.history.location.pathname}`, {
           method: "get",
           credentials: "include",
       })).json()
@@ -28,10 +30,10 @@ class GameContainer extends Component{
     return(
       <div>
         <GamesList games={this.state.games}/>
-        <ListPages changePage={this.props.changePage} />
+        <ListPages getGames={this.getGames}/>
       </div>
     )
   }
 }
 
-export default GameContainer
+export default withRouter(GameContainer)

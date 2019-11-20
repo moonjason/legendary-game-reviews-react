@@ -6,6 +6,7 @@ import Register from './Components/Register'
 import Login from './Components/Login'
 import Nav from './Components/Nav'
 import GameContainer from "./Components/GamesContainer"
+import { withRouter } from 'react-router-dom'
 
 import './App.css';
 
@@ -19,20 +20,13 @@ const My404 = () => {
 
 class App extends Component {
   state = {
-    currentUser: {},
-    page: 1
+    currentUser: {}
   }
   doUpdateCurrentUser = user => {
     this.setState({
       currentUser: {
         username: user.username
       }
-    })
-  }
-  changePage = (page) => {
-    console.log(page)
-    this.setState({
-      page: page
     })
   }
   render() {
@@ -43,7 +37,7 @@ class App extends Component {
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/login" render={() => <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
           <Route exact path="/register" render={() => <Register doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
-          <Route exact path={`/games/${this.state.page}`} render={() => <GameContainer page={this.state.page} changePage={this.changePage}/>}></Route>
+          <Route exact path={`${this.props.history.location.pathname}`} render={() => <GameContainer />}></Route>
           <Route component={My404} />
         </Switch>
       </>
@@ -51,4 +45,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
