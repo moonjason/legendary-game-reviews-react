@@ -6,7 +6,6 @@ class Register extends Component {
     state ={
         username: '',
         password: '',
-        password2: '',
         email: '',
     }
 
@@ -20,10 +19,20 @@ class Register extends Component {
     handleSubmit = async (e) => {
         e.preventDefault()
         console.log('Handling Register Submit')
-        //fetch user table, post 
-        // update current user 
-        //this.props.doUpdateCurrentUser(username)
-        //this.props.history.push('/dashboard')
+        const registerResponse = await fetch(`${process.env.REACT_APP_API_URL}/user/register`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const parsedResponse = await registerResponse.json();
+        if (parsedResponse.status.message === 'Success') {
+            console.log('Register Success')
+            this.props.doUpdateCurrentUser(parsedResponse.data)
+            this.props.history.push('/games')
+        }
     }
 
     render(){
@@ -33,8 +42,6 @@ class Register extends Component {
                 <input type="text" name="username" placeholder="Username" onChange={this.handleChange}/>
                 <p>Password:</p>
                 <input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
-                <p>Confirm Password:</p>
-                <input type="password" name="password2" placeholder="Confirm Password" onChange={this.handleChange}/>
                 <p>Email:</p>
                 <input type="email" name="email" placeholder="Email" onChange={this.handleChange}/>
                 <input type="submit"/>
