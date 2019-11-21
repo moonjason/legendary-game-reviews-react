@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
 import { withRouter } from 'react-router-dom';
+import { parse } from 'path';
 
 class Register extends Component {
     state ={
         username: '',
         password: '',
         email: '',
+        // isLogged: false
     }
 
     handleChange = (e) => {
@@ -27,10 +29,15 @@ class Register extends Component {
             }
         })
         const parsedResponse = await registerResponse.json();
+        console.log(parsedResponse, "<---------------------------------register parsed response")
         if (parsedResponse.status.message === 'Success') {
             console.log('Register Success')
             this.props.doUpdateCurrentUser(parsedResponse.data)
+            // this.setState({
+            //     isLogged: true
+            // })
             this.props.history.push('/games')
+            console.log(this.state.isLogged, "isLogged")
         }
     }
 

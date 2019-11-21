@@ -9,13 +9,19 @@ import {
   SearchBar, 
   MagnifyingGlass
 } from "./style"
-
+import { css } from "@emotion/core"
+import BarLoader from "react-spinners/BarLoader"
+const override = css`
+    display: block;
+    margin: 15% auto;
+`;
 class GameContainer extends Component{
   state = {
     games: [],
     search: "",
     page: 2,
-    loading: false
+    loading: false,
+    initialLoading: true
   }
   componentDidMount(){
     this.getGames()
@@ -28,7 +34,8 @@ class GameContainer extends Component{
         credentials: "include",
     })).json()
       this.setState({
-        games: gameResponse.results
+        games: gameResponse.results,
+        initialLoading: false
       })
       console.log(gameResponse.results);
       } catch(err) {
@@ -89,11 +96,17 @@ class GameContainer extends Component{
             <SearchBar onChange={this.handleInput} placeholder="Search for a Game"></SearchBar>
           </SearchDiv>
         </SearchForm>
-        <GamesList games={this.state.games} loadMoreGames={this.loadMoreGames}/>
+        {this.state.initialLoading 
+          ? <BarLoader
+              css={override}
+              sizeUnit={"px"}
+              size={150}
+              color={'#7a7a7a'}
+              loading={this.state.initialLoading}
+        /> : <GamesList games={this.state.games} loadMoreGames={this.loadMoreGames}/>}
         {this.state.loading ? <Loading /> : ""}
       </Container1>
     )
   }
 }
-
 export default withRouter(GameContainer)
