@@ -48,7 +48,6 @@ class App extends Component {
     return (
       <>
         {
-        // console.log(this.state.isLogged, "<-------------Applogged") 
         this.state.isLogged
         ? 
         <LoggedNav logout={this.logout}/> 

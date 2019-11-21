@@ -9,23 +9,6 @@ import {
   MainContainer,
 } from './style'
 
-// const navStyleRight = {
-//   display: 'flex',
-//   justifyContent: 'flex-end',
-// }
-
-// const navStyleLeft = {
-//   display: 'flex',
-//   justifyContent: 'flex-start'
-// }
-
-// const logout = () => {
-//   console.log("logout")
-//   // call logout function in app that is passed to here 
-//   // this.props.history.push('/home')
-
-// }
-
 const LoggedNav = (props) => {
   console.log(props, "<-----------------------from Logged in Nav")
   return (
