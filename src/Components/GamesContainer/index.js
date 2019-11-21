@@ -2,10 +2,20 @@ import React, { Component } from 'react'
 import GamesList from "../GamesList"
 import { withRouter } from "react-router-dom"
 
+import { css } from '@emotion/core';
+import BarLoader from 'react-spinners/BarLoader';
+
+const override = css`
+    display: block;
+    margin: 15% auto;
+`;
+
+
 class GameContainer extends Component{
   state = {
     games: [],
-    page: 2
+    page: 2,
+    loading: true,
   }
   componentDidMount(){
     this.getGames()
@@ -17,7 +27,8 @@ class GameContainer extends Component{
         credentials: "include",
     })).json()
       this.setState({
-        games: gameResponse.results
+        games: gameResponse.results,
+        loading: false,
       })
       console.log(gameResponse.results);
       } catch(err) {
@@ -46,7 +57,17 @@ class GameContainer extends Component{
     return(
       <div>
         {console.log(this.state.games)}
-        <GamesList games={this.state.games} loadGames={this.loadGames}/>
+        {this.state.loading 
+          ? <BarLoader
+              css={override}
+              sizeUnit={"px"}
+              size={150}
+              color={'#7a7a7a'}
+              loading={this.state.loading}
+            />
+          : <GamesList games={this.state.games} loadGames={this.loadGames}/>
+        }
+        {/* <GamesList games={this.state.games} loadGames={this.loadGames}/> */}
         <button onClick={this.loadGames}>Load more</button>
       </div>
     )
