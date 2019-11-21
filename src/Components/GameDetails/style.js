@@ -13,7 +13,7 @@ export const GameSection = styled.div`
     align-items: center;
 `
 
-export const GameTable = styled.tr`
+export const GameTable = styled.table`
 margin: 0 5rem;
 `
 
