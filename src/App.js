@@ -5,6 +5,7 @@ import Home from './Components/Home'
 import Register from './Components/Register'
 import Login from './Components/Login'
 import Nav from './Components/Nav'
+import LoggedNav from './Components/LoggedNav'
 import GameContainer from "./Components/GamesContainer"
 import GamesShow from "./Components/GamesShow"
 import { withRouter } from 'react-router-dom'
@@ -21,21 +22,38 @@ const My404 = () => {
 
 class App extends Component {
   state = {
+    isLogged: false,
     currentUser: {},
     currentGame: ""
   }
 
   doUpdateCurrentUser = user => {
     this.setState({
+      isLogged: true,
       currentUser: {
         username: user.username
       }
     })
   }
+  logout = () => {
+    this.setState({
+      isLogged: false,
+      currentUser: {
+        username: ""
+      }
+    })  
+    console.log("logout from App")
+  }
   render() {
     return (
       <>
-        <Nav />
+        {
+        this.state.isLogged
+        ? 
+        <LoggedNav logout={this.logout}/> 
+        : 
+        <Nav /> 
+        }
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/login" render={() => <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
