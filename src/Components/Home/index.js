@@ -1,13 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Nav from '../Nav'
+import BackgroundImg from "../../homeimg.jpg"
+import { BackgroundDiv } from "./style"
 
-const Home = () => {
+function Home() {
     return (
-        <>
-            Home Page
+        <BackgroundDiv img={BackgroundImg}>
             <NavLink to="/games">Browse through reviews</NavLink>
-        </>
+        </BackgroundDiv>
     )
 }
 
