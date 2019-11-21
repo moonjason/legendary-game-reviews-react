@@ -9,17 +9,18 @@ export const NavBar = styled.nav`
     justify-content: flex-end; 
     margin: 0px;
     font-size: 20px;
+    box-shadow: 0 4px 15px -2px black;
 `
 
 export const Link = styled(NavLink)`
     color: white;
-    margin: 20px;
+    padding: 1%;
     font-family: Arial;
     text-decoration: none; 
     &:hover{
-        text-decoration: underline; 
+        color: #0D98BA; 
     }
     &.active{
-        border-bottom: 3px solid red; 
+        border-bottom: 2.5px solid #0D98BA;
     }
 `
