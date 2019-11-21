@@ -1,22 +1,35 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import {
+    GameLink,
+    Container1,
+    GameAttribute,
+    GameImg,
+    GameH1,
+    Platform
+  } from './style'
 
 function GamesList(props) {
     const games = props.games.map(game => {
+        const platforms = game.platforms.map(platform => {
+            return(
+                <Platform>{platform.platform.name}</Platform>
+            )
+        })
         return(
-            <div>
-                <Link to={`/games/${game.id}`}>
-                    <h1>{game.name}</h1>
-                    <img style={{"width": "5rem"}} src={game.background_image}/>
-                </Link>
-            </div>
+                <GameLink to={`/games/${game.id}`}>
+                    <GameImg src={game.background_image}/>
+                    <GameAttribute>
+                        {platforms}
+                    </GameAttribute>
+                    <GameH1>{game.name}</GameH1>
+                </GameLink>
         )
     })
     return(
-        <div>
+        <Container1>
             {games}
-            <button onClick={props.loadGames}>Load more</button>
-        </div>
+        </Container1>
     )
 }
 
