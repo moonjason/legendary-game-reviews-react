@@ -1,6 +1,12 @@
 import React from 'react'
 import {
-    GameDataRow
+    Container1,
+    GameSection,
+    GameTable,
+    GameDataRow,
+    GameImg,
+    GameTitle,
+    GameDescription
 } from './style'
 
 function GameDetails(props) {
@@ -24,35 +30,37 @@ function GameDetails(props) {
     date[1] = (parseInt(date[1])+1).toString().concat(',')
 
     return (
-        <div>
-            <h1>{props.shownGame.name}</h1>
-            <img style={{'width': '50%'}} src={props.shownGame.background_image_additional} />
-            <table style={{'width': '20%'}} className="attributes">
-                <tbody>
-                    <GameDataRow>
-                        <td>Release Date:</td>
-                        <td>{date.join(' ')}</td>
-                    </GameDataRow>
-                    <GameDataRow>
-                        <td>Genre:</td>
-                        <td>{genres}</td>
-                    </GameDataRow>
-                    <GameDataRow>
-                        <td>Platform(s):</td>
-                        <td>{platforms}</td>
-                    </GameDataRow>
-                    <GameDataRow>
-                        <td>Developer(s):</td>
-                        <td>{developers}</td>
-                    </GameDataRow>
-                    <GameDataRow>
-                        <td>Publisher(s):</td>
-                        <td>{publishers}</td>
-                    </GameDataRow>
-                </tbody>
-            </table>
-            <h4>{props.shownGame.description_raw}</h4>
-        </div>
+        <Container1>
+            <GameTitle>{props.shownGame.name}</GameTitle>
+            <GameSection>
+            <GameImg src={props.shownGame.background_image_additional} />
+                <GameTable className="attributes">
+                    <tbody>
+                        <GameDataRow>
+                            <td>Release Date:</td>
+                            <td>{date.join(' ')}</td>
+                        </GameDataRow>
+                        <GameDataRow>
+                            <td>Genre:</td>
+                            <td>{genres}</td>
+                        </GameDataRow>
+                        <GameDataRow>
+                            <td>Platform(s):</td>
+                            <td>{platforms}</td>
+                        </GameDataRow>
+                        <GameDataRow>
+                            <td>Developer(s):</td>
+                            <td>{developers}</td>
+                        </GameDataRow>
+                        <GameDataRow>
+                            <td>Publisher(s):</td>
+                            <td>{publishers}</td>
+                        </GameDataRow>
+                    </tbody>
+                </GameTable>
+            </GameSection>
+            <GameDescription>{props.shownGame.description_raw}</GameDescription>
+        </Container1>
     )
 }
 

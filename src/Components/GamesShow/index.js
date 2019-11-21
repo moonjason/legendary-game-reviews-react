@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 
 import GameDetails from '../GameDetails'
+import ReviewForm from "../ReviewForm"
 
 import { css } from '@emotion/core';
 import { withRouter } from "react-router-dom"
@@ -45,8 +46,10 @@ class GamesShow extends Component {
                     color={'#7a7a7a'}
                     loading={this.state.loading}
                   />
-                : <GameDetails shownGame={this.state.shownGame} />
-            // this.state.showGame ? <GameDetails shownGame={this.state.shownGame} /> : ""
+                : <div>
+                    <GameDetails shownGame={this.state.shownGame} />
+                    <ReviewForm />
+                </div>
         )
     }
 }

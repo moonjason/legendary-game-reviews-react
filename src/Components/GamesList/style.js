@@ -22,6 +22,9 @@ export const GameLink = styled(Link)`
     &:hover :nth-child(1) {
         opacity: 1;
     }
+    &:hover {
+        box-shadow: 0px 1px 30px 10px black;
+    }
 `
 
 export const GameAttribute = styled.div`
