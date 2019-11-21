@@ -5,7 +5,6 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
-        // loggedIn: false
     };
 
     handleChange = (e) =>{ 
@@ -18,7 +17,6 @@ class Login extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Handling Submit to Login')
-        // check if user exists in user OR email column of userstable 
         const loginIn = await fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
             method: "POST",
             credentials: 'include',
@@ -33,9 +31,6 @@ class Login extends Component {
         if(parsedLogin.status.message === "Success"){
             console.log("Login success")
             this.props.doUpdateCurrentUser(parsedLogin.data)
-            // this.setState({
-            //     loggedIn: true
-            // })
             this.props.history.push('/games')
         }    
     }
