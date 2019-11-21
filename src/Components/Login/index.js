@@ -5,7 +5,7 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
-        loggedIn: false
+        // loggedIn: false
     };
 
     handleChange = (e) =>{ 
@@ -32,11 +32,11 @@ class Login extends Component {
         console.log(parsedLogin, "<-------parsedLogin")
         if(parsedLogin.status.message === "Success"){
             console.log("Login success")
-            this.props.doUpdateCurrentUser(parsedLogin)
+            this.props.doUpdateCurrentUser(parsedLogin.data)
+            // this.setState({
+            //     loggedIn: true
+            // })
             this.props.history.push('/games')
-            this.setState({
-                loggedIn: true
-            })
         }    
     }
 
