@@ -1,18 +1,17 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 
-export const Container1 = styled.div`
+export const Container2 = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: #202129;
 `
 
 export const GameLink = styled(Link)`
     position: relative;
     width: 18rem;
     height: 22rem;
-    /* border: 0 solid black; */
+    border: 0 solid black;
     margin: 1rem;
     display: flex;
     flex-direction: column;
@@ -40,6 +39,7 @@ export const GameImg = styled.img`
     width: 100%;
     height: 12rem;
     opacity: 0.7;
+    border-radius: 1rem 1rem 0 0;
 `
 
 export const GameH1 = styled.h1`
