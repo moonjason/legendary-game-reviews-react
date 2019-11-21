@@ -5,6 +5,7 @@ class GameShowMock extends Component {
     state = {
         shownGame: {}
     }
+
     getOneGame = async () => {
         try {
             const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/1/${this.props.match.params.id}`, {
@@ -21,11 +22,14 @@ class GameShowMock extends Component {
     componentDidMount() {
         this.getOneGame();
     }
+
     render() {
+        const shownGame = this.state.shownGame
         return(
             <div>
                 {this.props.match.params.id}
-                {this.state.shownGame.name}
+                <h1>{this.shownGame.name}</h1> 
+                {/* <h3>ESRB Rating: {shownGame.esrb_rating.name}</h3> */}
             </div>
         )
     }
