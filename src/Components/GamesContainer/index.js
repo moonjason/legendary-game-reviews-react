@@ -62,7 +62,7 @@ class GameContainer extends Component{
   searchGames = async (e) => {
     e.preventDefault()
     try {
-      const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/1/1/${this.state.search}`, {
+      const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/query/filter/${this.state.search}`, {
         method: "GET",
         credentials: "include"
       })).json()

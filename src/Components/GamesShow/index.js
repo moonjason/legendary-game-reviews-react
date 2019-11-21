@@ -7,7 +7,7 @@ class GamesShow extends Component {
     }
     getOneGame = async () => {
         try {
-            const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/1/${this.props.match.params.id}`, {
+            const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/appid/${this.props.match.params.id}`, {
                 method: "GET"
             })).json();
             console.log(gameResponse)
