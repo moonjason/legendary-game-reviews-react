@@ -14,7 +14,7 @@ export const NavBar = styled.nav`
 
 export const Link = styled(NavLink)`
     color: white;
-    padding: 1%;
+    padding: 1% 2%;
     font-family: Arial;
     text-decoration: none; 
     &:hover{
