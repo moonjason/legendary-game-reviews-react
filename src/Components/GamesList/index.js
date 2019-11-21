@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import {
+    Container2,
     GameLink,
-    Container1,
     GameAttribute,
     GameImg,
     GameH1,
@@ -27,9 +27,9 @@ function GamesList(props) {
         )
     })
     return(
-        <Container1>
+        <Container2>
             {games}
-        </Container1>
+        </Container2>
     )
 }
 
