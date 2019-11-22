@@ -85,11 +85,11 @@ class GameContainer extends Component{
     }
   }
   atBottom = () => {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 && !this.state.loading && this.props.match.params.id) {
       this.setState({
         page: this.state.page + 1
       })
-      this.loadMoreGames()
+      this.loadMoreGames();
     }
   }
   render(){
