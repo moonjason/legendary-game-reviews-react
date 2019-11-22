@@ -8,6 +8,7 @@ import Nav from './Components/Nav'
 import LoggedNav from './Components/LoggedNav'
 import GameContainer from "./Components/GamesContainer"
 import GamesShow from "./Components/GamesShow"
+import SearchedGamesContainer from "./Components/SearchedGamesContainer"
 import { withRouter } from 'react-router-dom'
 
 import './App.css';
@@ -24,9 +25,9 @@ class App extends Component {
   state = {
     isLogged: false,
     currentUser: {},
-    currentGame: ""
+    currentGame: "",
+    search: ""
   }
-
   doUpdateCurrentUser = user => {
     this.setState({
       isLogged: true,
@@ -46,6 +47,11 @@ class App extends Component {
     })  
     console.log("logout from App")
   }
+  setSearch = searchValue => {
+    this.setState({
+      search: searchValue
+    })
+  }
   render() {
     return (
       <>
@@ -61,8 +67,10 @@ class App extends Component {
           <Route exact path="/login" render={() => <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
           <Route exact path="/register" render={() => <Register doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
           {/* <Route exact path={`${this.props.history.location.pathname}`} render={() => <GameContainer/>}></Route> */}
-          <Route exact path="/games" render={() => <GameContainer />}></Route>
+          <Route exact path="/games" render={() => <GameContainer setSearch={this.setSearch}/>}></Route>
           <Route exact path="/games/:id" render={() => <GamesShow currentUser={this.state.currentUser}/>}></Route>
+          {/* <Route exact path={`/games?search=${this.state.search}`} render={() => <GameContainer currentUser={this.state.currentUser}/>}/> */}
+          <Route exact path={`/games/search/:query`} render={() => <SearchedGamesContainer search={this.state.search} setSearch={this.setSearch}/>}></Route>
           <Route component={My404} />
         </Switch>
       </>

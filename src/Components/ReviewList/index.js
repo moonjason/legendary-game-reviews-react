@@ -11,7 +11,7 @@ const ReviewList = (props) => {
         <Review key={review.id}>
           <h1>{review && review.title}</h1>
           <h3>{review && review.body}</h3>
-          {review.is_poitive ? <div>positive</div> : <div>negative</div>}
+          {review.is_positive ? <div>positive</div> : <div>negative</div>}
           {review.user_id.id === props.currentUser.id 
             ? <>
               <button>Edit</button> 
