@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GamesList from "../GamesList"
 import Loading from "../Loading"
+import FilterGames from "../FilterGames"
 import { withRouter } from "react-router-dom"
 import { 
   Container1,
@@ -21,7 +22,8 @@ class GameContainer extends Component{
     search: "",
     page: 2,
     loading: false,
-    initialLoading: true
+    initialLoading: true,
+    filter: ""
   }
   componentDidMount(){
     this.getGames()
@@ -93,9 +95,10 @@ class GameContainer extends Component{
             <MagnifyingGlass type="submit">
               <i class="fa fa-search"></i>
             </MagnifyingGlass>
-            <SearchBar onChange={this.handleInput} placeholder="Search for a Game"></SearchBar>
+            <SearchBar onChange={this.handleInput} placeholder="Search for a game"></SearchBar>
           </SearchDiv>
         </SearchForm>
+        <FilterGames />
         {this.state.initialLoading 
           ? <BarLoader
               css={override}

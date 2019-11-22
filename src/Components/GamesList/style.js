@@ -36,6 +36,9 @@ export const GameAttribute = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    &.big-platform {
+        font-size: 0.8rem;
+    }
 `
 
 export const GameImg = styled.img`
@@ -50,6 +53,9 @@ export const GameH1 = styled.h1`
     font-size: 1.5rem;
     margin: 1rem;
     color: white;
+    &.big-title {
+        font-size: 1rem;
+    }
 `
 
 export const Platform = styled.p`
