@@ -30,7 +30,6 @@ class ReviewForm extends Component {
                 "Content-Type": "application/json"
             }
         })
-        console.log(review, "<-----review")
     }   
     render() {
         return(

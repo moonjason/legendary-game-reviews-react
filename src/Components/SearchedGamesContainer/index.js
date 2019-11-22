@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import GamesList from "../GamesList"
 import Loading from "../Loading"
-import FilterGames from "../FilterGames"
 import { withRouter } from "react-router-dom"
 import { 
   Container1,
@@ -16,22 +15,30 @@ const override = css`
     display: block;
     margin: 15% auto;
 `;
-class GameContainer extends Component{
+class SearchedGamesContainer extends Component{
   state = {
     games: [],
-    search: "",
+    search: this.props.match.params.query,
     page: 1,
     loading: false,
     initialLoading: true,
-    filter: ""
   }
   componentDidMount(){
+    console.log("mounted")
     this.getGames()
     window.addEventListener('scroll', this.atBottom)
   }
+  componentDidUpdate() {
+    window.onpopstate = (e) => {
+      this.setState({
+        search: this.props.match.params.query
+      })
+      this.getGames();
+    }
+  }
   getGames = async () => {
       try {
-      const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/1`, {
+      const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/query/filter/${this.state.search}`, {
         method: "get",
         credentials: "include",
     })).json()
@@ -80,9 +87,9 @@ class GameContainer extends Component{
       this.setState({
         games: gameResponse.results
       })
-      this.props.setSearch(this.state.search);
-      this.props.history.push(`/games/search/${this.state.search}`)
-      // this.props.history.push(`/games?search=${this.state.search}`)
+      console.log(this.props)
+      this.props.history.push(`/games/search/${this.state.search}`);
+      this.props.setSearch(this.props.match.params.query);
     } catch(err) {
       console.log(err)
     }
@@ -106,7 +113,6 @@ class GameContainer extends Component{
             <SearchBar onChange={this.handleInput} placeholder="Search for a game"></SearchBar>
           </SearchDiv>
         </SearchForm>
-        <FilterGames />
         {this.state.initialLoading 
           ? <BarLoader
               css={override}
@@ -120,4 +126,4 @@ class GameContainer extends Component{
     )
   }
 }
-export default withRouter(GameContainer)
+export default withRouter(SearchedGamesContainer)
