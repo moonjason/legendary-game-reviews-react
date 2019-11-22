@@ -59,7 +59,7 @@ function GameDetails(props) {
                     </tbody>
                 </GameTable>
             </GameSection>
-            <GameDescription>{props.shownGame.description_raw}</GameDescription>
+            <GameDescription dangerouslySetInnerHTML={{__html: props.shownGame.description}}/>
         </Container1>
     )
 }
