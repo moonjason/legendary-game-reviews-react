@@ -51,7 +51,7 @@ class Register extends Component {
                 <Heading>Register</Heading>
                 <BackgroundDiv>
                     <Form onSubmit={this.handleSubmit}>
-                        <Text>Username</Text>
+                        <Text>Username:</Text>
                         <Box type="text" name="username" placeholder="Username" onChange={this.handleChange} />
                         <Text>Password:</Text>
                         <Box type="password" name="password" placeholder="Password" onChange={this.handleChange} />
