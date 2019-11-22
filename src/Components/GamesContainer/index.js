@@ -20,7 +20,7 @@ class GameContainer extends Component{
   state = {
     games: [],
     search: "",
-    page: 2,
+    page: 1,
     loading: false,
     initialLoading: true,
     filter: ""
@@ -45,9 +45,11 @@ class GameContainer extends Component{
       }
   }
   loadMoreGames = async () => {
+    if(this.state.loading) {
+      return;
+    }
     try {
       this.setState(prevState => ({
-        page: prevState.page + 1,
         loading: true
       }))
       const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/${this.state.page}`, {
@@ -84,6 +86,9 @@ class GameContainer extends Component{
   }
   atBottom = () => {
     if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10) {
+      this.setState({
+        page: this.state.page + 1
+      })
       this.loadMoreGames()
     }
   }
@@ -93,7 +98,7 @@ class GameContainer extends Component{
         <SearchForm onSubmit={this.searchGames}>
           <SearchDiv>
             <MagnifyingGlass type="submit">
-              <i class="fa fa-search"></i>
+              <i className="fa fa-search"></i>
             </MagnifyingGlass>
             <SearchBar onChange={this.handleInput} placeholder="Search for a game"></SearchBar>
           </SearchDiv>
