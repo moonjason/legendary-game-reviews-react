@@ -5,13 +5,13 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
+        session: {}
     };
 
     handleChange = (e) =>{ 
         this.setState({
             [e.target.name]: e.currentTarget.value
         });
-        console.log(this.state);
     }
 
     handleSubmit = async (e) => {
@@ -28,7 +28,13 @@ class Login extends Component {
         console.log(loginIn, "<--------Login")
         const parsedLogin = await loginIn.json()
         console.log(parsedLogin, "<-------parsedLogin")
+
         if(parsedLogin.status.message === "Success"){
+            this.setState({
+                session: parsedLogin.session.username
+            })
+            console.log(this.state, "<--------------------state after login")
+            localStorage.setItem('user',  JSON.stringify(parsedLogin.session))
             console.log("Login success")
             this.props.doUpdateCurrentUser(parsedLogin.data)
             this.props.history.push('/games')
