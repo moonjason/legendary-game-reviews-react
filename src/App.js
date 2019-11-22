@@ -49,8 +49,16 @@ class App extends Component {
       }
     })
   }
-  logout = () => {
+  logout = async () => {
     const user = localStorage.removeItem("user")
+    const logoutUser = await fetch(`${process.env.REACT_APP_API_URL}/user/logout`, {
+      method: "GET",
+      credentials: 'include',
+      headers: {
+        'Content-type': "application/json"
+      }
+    })
+    console.log(logoutUser, "<-------------logoutUser")
     this.setState({
       isLogged: false,
       currentUser: {
