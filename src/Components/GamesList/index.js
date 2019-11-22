@@ -19,10 +19,10 @@ function GamesList(props) {
         return(
                 <GameLink to={`/games/${game.id}`}>
                     <GameImg src={game.background_image}/>
-                    <GameAttribute>
+                    <GameAttribute className={platforms.length > 5 ? "big-platform" : ""}>
                         {platforms}
                     </GameAttribute>
-                    <GameH1>{game.name}</GameH1>
+                    <GameH1 className={game.name.length > 50 ? "big-title" : ""}>{game.name}</GameH1>
                 </GameLink>
         )
     })

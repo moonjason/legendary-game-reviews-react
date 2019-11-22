@@ -19,7 +19,6 @@ class ReviewForm extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         })
-        console.log(this.state, "<-----state")
     }
     handleSubmit = async (e) => {
         e.preventDefault()
@@ -31,12 +30,10 @@ class ReviewForm extends Component {
                 "Content-Type": "application/json"
             }
         })
-        console.log(review, "<-----------review from review")
     }   
     render() {
         return(
             <GameForm onSubmit={this.handleSubmit}>
-                {console.log(this.props.currentUser, "<--------review")}
                 <GameInput name="title" onChange={this.handleInput} placeholder="Title"></GameInput>
                 <GameInput name="body" onChange={this.handleInput} placeholder="Body"></GameInput>
                 <button type="submit">Submit</button>
