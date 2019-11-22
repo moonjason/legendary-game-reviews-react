@@ -56,6 +56,17 @@ class GamesShow extends Component {
         console.log(parsedReviews.data)
     }   
 
+    deleteReview = async (id) => {
+        const deletedResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/${id}`, {
+            method: 'DELETE',
+        });
+        const parsedResponse = await deletedResponse.json();
+        console.log(parsedResponse)
+        this.setState({
+            foundReviews: this.state.foundReviews.filter(review => review.id !== id)
+        })
+    }
+
     render() {
         return (
             this.state.loading 
@@ -69,7 +80,7 @@ class GamesShow extends Component {
                 : <div>
                     <GameDetails shownGame={this.state.shownGame} />
                     {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} /> : ""}
-                    <ReviewList foundReviews={this.state.foundReviews} currentUser={this.props.currentUser} gameId={this.props.match.params.id} />
+                    <ReviewList foundReviews={this.state.foundReviews} currentUser={this.props.currentUser} gameId={this.props.match.params.id} deleteReview={this.deleteReview}/>
                 </div>
             
         )

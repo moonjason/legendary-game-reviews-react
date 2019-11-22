@@ -10,7 +10,7 @@ const ReviewList = (props) => {
           {review.user_id.id === props.currentUser.id 
             ? <>
               <button>Edit</button> 
-              <button>Delete</button>
+              <button onClick={() => props.deleteReview(review.id)}>Delete</button>
               </>
             : ""
           }
