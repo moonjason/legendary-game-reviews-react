@@ -8,24 +8,35 @@ import {
 class ReviewForm extends Component {
     state = {
         game_id: this.props.match.params.id,
-        user_id: "some id",
+        user_id: this.props.currentUser.id,
         title: "",
         body: "",
         is_positive: true,
-        up_votes: [],
-        down_votes: [],
+        up_votes: 0,
+        down_votes: 0,
     }
     handleInput = (e) => {
-        console.log(this.state)
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
     }
+    handleSubmit = async (e) => {
+        e.preventDefault()
+        const review = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(this.state),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+    }   
     render() {
         return(
-            <GameForm>
-                <GameInput name="title" onChange={this.handleInput}></GameInput>
-                <GameInput name="body" onChange={this.handleInput}></GameInput>
+            <GameForm onSubmit={this.handleSubmit}>
+                <GameInput name="title" onChange={this.handleInput} placeholder="Title"></GameInput>
+                <GameInput name="body" onChange={this.handleInput} placeholder="Body"></GameInput>
+                <button type="submit">Submit</button>
             </GameForm>
         )
     }
