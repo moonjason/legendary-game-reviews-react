@@ -24,7 +24,7 @@ class ReviewForm extends Component {
     render() {
         return(
             <GameForm>
-                <GameInput name="title" onChange={this.handleGameInput}></GameInput>
+                <GameInput name="title" onChange={this.handleInput}></GameInput>
                 <GameInput name="body" onChange={this.handleInput}></GameInput>
             </GameForm>
         )

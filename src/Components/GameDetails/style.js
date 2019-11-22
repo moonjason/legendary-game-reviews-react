@@ -32,6 +32,7 @@ export const GameTitle = styled.h1`
 `
 
 export const GameDescription = styled.p`
+    /* text-align: center; */
     width: 56.5rem;
     margin: 2rem;
 `
