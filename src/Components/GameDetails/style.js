@@ -22,7 +22,7 @@ export const GameDataRow = styled.tr`
 `
 
 export const GameImg = styled.img`
-    width: 30rem;
+    width: 40rem;
     margin: 0 5rem;
 `
 
@@ -32,7 +32,6 @@ export const GameTitle = styled.h1`
 `
 
 export const GameDescription = styled.p`
-    /* text-align: center; */
-    width: 56.5rem;
+    width: 65rem;
     margin: 2rem;
 `
