@@ -34,7 +34,6 @@ class Login extends Component {
             this.props.history.push('/games')
         }    
     }
-
     render() {
         return (
             <>

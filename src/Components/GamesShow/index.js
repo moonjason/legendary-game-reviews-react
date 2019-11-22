@@ -48,7 +48,7 @@ class GamesShow extends Component {
                   />
                 : <div>
                     <GameDetails shownGame={this.state.shownGame} />
-                    <ReviewForm />
+                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} /> : ""}
                 </div>
         )
     }

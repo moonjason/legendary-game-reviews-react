@@ -31,6 +31,7 @@ class App extends Component {
     this.setState({
       isLogged: true,
       currentUser: {
+        id: user.id,
         username: user.username
       }
     })
@@ -39,6 +40,7 @@ class App extends Component {
     this.setState({
       isLogged: false,
       currentUser: {
+        id: "",
         username: ""
       }
     })  
@@ -60,7 +62,7 @@ class App extends Component {
           <Route exact path="/register" render={() => <Register doUpdateCurrentUser={this.doUpdateCurrentUser}/>}></Route>
           {/* <Route exact path={`${this.props.history.location.pathname}`} render={() => <GameContainer/>}></Route> */}
           <Route exact path="/games" render={() => <GameContainer />}></Route>
-          <Route exact path="/games/:id" render={() => <GamesShow />}></Route>
+          <Route exact path="/games/:id" render={() => <GamesShow currentUser={this.state.currentUser}/>}></Route>
           <Route component={My404} />
         </Switch>
       </>
