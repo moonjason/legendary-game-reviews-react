@@ -7,6 +7,7 @@ import ReviewList from '../ReviewList'
 import { css } from '@emotion/core';
 import { withRouter } from "react-router-dom"
 import BarLoader from 'react-spinners/BarLoader';
+import { Container1 } from "./style"
 
 
 const override = css`
@@ -18,8 +19,8 @@ class GamesShow extends Component {
     state = {
         shownGame: {},
         foundReviews: [],
-        loading: true,
-        loading2: true
+        loadingGame: true,
+        loadingReviews: true
     }
     componentDidMount() {
         this.getOneGame();
@@ -34,13 +35,12 @@ class GamesShow extends Component {
             console.log(gameResponse)
             this.setState({
                 shownGame: gameResponse,
-                loading: false
+                loadingGame: false
             })
         } catch(err) {
             console.log(err)
         }
     }
-
     getReviews = async () => {
         const reviewResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/`, {
             method: "GET",
@@ -51,11 +51,25 @@ class GamesShow extends Component {
         const parsedReviews = await reviewResponse.json()
         this.setState({
             foundReviews: parsedReviews.data,
-            loading2: false
+            loadingReviews: false
         })
         console.log(parsedReviews.data)
     }   
-
+    addReview = async (e, newReview) => {
+        e.preventDefault()
+        const review = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(newReview),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })).json()
+        this.setState({
+            foundReviews: [...this.state.foundReviews, review.data]
+        })
+        console.log(review);
+    }   
     deleteReview = async (id) => {
         const deletedResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/${id}`, {
             method: 'DELETE',
@@ -69,19 +83,18 @@ class GamesShow extends Component {
 
     render() {
         return (
-            this.state.loading 
+            this.state.loadingGame || this.state.loadingReviews
                 ? <BarLoader
                     css={override}
                     sizeUnit={"px"}
                     size={150}
                     color={'#7a7a7a'}
-                    loading={this.state.loading && this.state.loading2}
                   />
-                : <div>
+                : <Container1>
                     <GameDetails shownGame={this.state.shownGame} />
-                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} /> : ""}
+                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} addReview={this.addReview}/> : ""}
                     <ReviewList foundReviews={this.state.foundReviews} currentUser={this.props.currentUser} gameId={this.props.match.params.id} deleteReview={this.deleteReview}/>
-                </div>
+                </Container1>
             
         )
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import GamesList from "../GamesList"
 import Loading from "../Loading"
-import FilterGames from "../FilterGames"
 import { withRouter } from "react-router-dom"
 import { 
   Container1,
@@ -88,11 +87,11 @@ class GameContainer extends Component{
     }
   }
   atBottom = () => {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 && !this.state.loading && this.props.match.params.id) {
       this.setState({
         page: this.state.page + 1
       })
-      this.loadMoreGames()
+      this.loadMoreGames();
     }
   }
   render(){
@@ -106,7 +105,6 @@ class GameContainer extends Component{
             <SearchBar onChange={this.handleInput} placeholder="Search for a game"></SearchBar>
           </SearchDiv>
         </SearchForm>
-        <FilterGames />
         {this.state.initialLoading 
           ? <BarLoader
               css={override}

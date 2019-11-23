@@ -34,7 +34,7 @@ class ReviewForm extends Component {
     }   
     render() {
         return(
-            <GameForm onSubmit={this.handleSubmit}>
+            <GameForm onSubmit={(e) => {this.props.addReview(e, this.state)}}>
                 <GameInput name="title" onChange={this.handleInput} placeholder="Title"></GameInput>
                 <GameInput name="body" onChange={this.handleInput} placeholder="Body"></GameInput>
                 <button type="submit">Submit</button>

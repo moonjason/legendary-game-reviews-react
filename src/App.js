@@ -50,17 +50,11 @@ class App extends Component {
     })
   }
   logout = async () => {
-    const user = localStorage.removeItem("user")
-    const logoutUser = await fetch(`${process.env.REACT_APP_API_URL}/user/logout`, {
-      method: "GET",
-      credentials: 'include',
-      headers: {
-        'Content-type': "application/json"
-      }
-    })
-    console.log(logoutUser, "<-------------logoutUser")
-    const parsedLogout = await logoutUser.json()
-    console.log(parsedLogout);
+    try {
+      const logoutUser = await (await fetch(`${process.env.REACT_APP_API_URL}/user/logout`, {
+        method: "GET",
+        credentials: "include"
+      })).json();
     if(parsedLogout.status.code === 202){
       this.setState({
         isLogged: false,
@@ -69,8 +63,10 @@ class App extends Component {
           username: ""
         }
       })
+      console.log(logoutUser)
+    } catch(err) {
+      console.log(err);
     }
-    console.log("logout from App")
   }
   setSearch = searchValue => {
     this.setState({
