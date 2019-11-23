@@ -20,6 +20,18 @@ class ReviewForm extends Component {
             [e.target.name]: e.target.value,
         })
     }
+    handleSubmit = async (e) => {
+        e.preventDefault()
+        const review = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(this.state),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        console.log(review, "<----------------review")
+    }   
     render() {
         return(
             <GameForm onSubmit={(e) => {this.props.addReview(e, this.state)}}>

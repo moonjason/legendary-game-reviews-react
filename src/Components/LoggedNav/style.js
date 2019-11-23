@@ -24,3 +24,18 @@ export const Link = styled(NavLink)`
         border-bottom: 2.5px solid #0D98BA;
     }
 `
+
+export const Username = styled.p`
+    color: white;
+    padding: 1% 2%;
+    font-family: Arial;
+    text-decoration: none; 
+`
+export const Title = styled.p`
+    color: white;
+    font-size: 30px;
+    padding: .5% 14% ;
+    font-family: 'Racing Sans One', cursive;
+    justify-content: flex-start;
+    font-style: normal;
+`
