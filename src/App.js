@@ -83,7 +83,7 @@ class App extends Component {
         {
           this.state.isLogged
             ?
-            <LoggedNav logout={this.logout}/>
+            <LoggedNav currentUser={this.state.currentUser} logout={this.logout} />
             :
             <Nav />
         }
