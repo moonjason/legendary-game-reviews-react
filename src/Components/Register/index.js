@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { withRouter } from 'react-router-dom';
 import { parse } from 'path';
+import { BackgroundDiv, Form, Box, Btn, Text, Heading } from "./style"
+
 
 class Register extends Component {
     state ={
@@ -43,19 +45,43 @@ class Register extends Component {
         }
     }
 
-    render(){
+    render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <p>Username:</p>
-                <input type="text" name="username" placeholder="Username" onChange={this.handleChange}/>
-                <p>Password:</p>
-                <input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
-                <p>Email:</p>
-                <input type="email" name="email" placeholder="Email" onChange={this.handleChange}/>
-                <input type="submit"/>
-            </form>
+            <>
+                <Heading>Register</Heading>
+                <BackgroundDiv>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Text>Username:</Text>
+                        <Box type="text" name="username" placeholder="Username" onChange={this.handleChange} />
+                        <Text>Password:</Text>
+                        <Box type="password" name="password" placeholder="Password" onChange={this.handleChange} />
+                        <Text>Email:</Text>
+                        <Box type="email" name="email" placeholder="Email" onChange={this.handleChange} />
+                        <Btn type="submit">Login</Btn>
+                    </Form>
+                </BackgroundDiv>
+            </>
         )
     }
 }
 
 export default withRouter(Register);
+
+// render() {
+//     return (
+//         <>
+//             <Heading>Login</Heading>
+//             <BackgroundDiv>
+//                 <Form onSubmit={this.handleSubmit}>
+//                     <Text>Username</Text>
+//                     <Box type="text" name="username" placeholder="Username" onChange={this.handleChange} />
+//                     <Text>Password:</Text>
+//                     <Box type="password" name="password" placeholder="Password" onChange={this.handleChange} />
+//                     <Text>Email:</Text>
+//                     <Box type="email" name="email" placeholder="Email" onChange={this.handleChange} />
+//                     <Btn type="submit">Login</Btn>
+//                 </Form>
+//             </BackgroundDiv>
+//         </>
+//     )
+// }

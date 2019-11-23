@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { BackgroundDiv, Form, Box, Btn, Text, Heading } from "./style"
 
 class Login extends Component {
     state = {
@@ -8,7 +9,7 @@ class Login extends Component {
         session: {}
     };
 
-    handleChange = (e) =>{ 
+    handleChange = (e) => {
         this.setState({
             [e.target.name]: e.currentTarget.value
         });
@@ -29,27 +30,30 @@ class Login extends Component {
         const parsedLogin = await loginIn.json()
         console.log(parsedLogin, "<-------parsedLogin")
 
-        if(parsedLogin.status.message === "Success"){
+        if (parsedLogin.status.message === "Success") {
             this.setState({
                 session: parsedLogin.session.username
             })
             console.log(this.state, "<--------------------state after login")
-            localStorage.setItem('user',  JSON.stringify(parsedLogin.session))
+            localStorage.setItem('user', JSON.stringify(parsedLogin.session))
             console.log("Login success")
             this.props.doUpdateCurrentUser(parsedLogin.data)
             this.props.history.push('/games')
-        }    
+        }
     }
     render() {
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
-                    <p>Username:</p>
-                    <input type="text" name="username" placeholder="Username" onChange={this.handleChange}/>
-                    <p>Password:</p>
-                    <input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
-                    <button type="submit">Login</button>
-                </form>
+                <Heading>Login</Heading>
+                <BackgroundDiv>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Text>Username:</Text>
+                        <Box type="text" name="username" placeholder="Username" onChange={this.handleChange} />
+                        <Text>Password:</Text>
+                        <Box type="password" name="password" placeholder="Password" onChange={this.handleChange} />
+                        <Btn type="submit">Login</Btn>
+                    </Form>
+                </BackgroundDiv>
             </>
         )
     }
