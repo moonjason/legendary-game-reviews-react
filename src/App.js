@@ -54,15 +54,16 @@ class App extends Component {
       const logoutUser = await (await fetch(`${process.env.REACT_APP_API_URL}/user/logout`, {
         method: "GET",
         credentials: "include"
-      })).json();
-    if(parsedLogout.status.code === 202){
-      this.setState({
-        isLogged: false,
-        currentUser: {
-          id: "",
-          username: ""
-        }
-      })
+      })).json()
+      if(logoutUser.status.code === 202){
+        this.setState({
+          isLogged: false,
+          currentUser: {
+            id: "",
+            username: ""
+          }
+        })
+      }
       console.log(logoutUser)
     } catch(err) {
       console.log(err);
