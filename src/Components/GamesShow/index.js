@@ -41,7 +41,6 @@ class GamesShow extends Component {
             console.log(err)
         }
     }
-
     getReviews = async () => {
         const reviewResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/`, {
             method: "GET",
@@ -56,7 +55,21 @@ class GamesShow extends Component {
         })
         console.log(parsedReviews.data)
     }   
-
+    addReview = async (e, newReview) => {
+        e.preventDefault()
+        const review = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(newReview),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })).json()
+        this.setState({
+            foundReviews: [...this.state.foundReviews, review.data]
+        })
+        console.log(review);
+    }   
     deleteReview = async (id) => {
         const deletedResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/${id}`, {
             method: 'DELETE',
@@ -79,7 +92,7 @@ class GamesShow extends Component {
                   />
                 : <Container1>
                     <GameDetails shownGame={this.state.shownGame} />
-                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} /> : ""}
+                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} addReview={this.addReview}/> : ""}
                     <ReviewList foundReviews={this.state.foundReviews} currentUser={this.props.currentUser} gameId={this.props.match.params.id} deleteReview={this.deleteReview}/>
                 </Container1>
             

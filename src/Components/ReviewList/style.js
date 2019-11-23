@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container2 = styled.div`
     width: 50rem;
-    background-color: red;
+    /* background-color: red; */
 `
 
 export const Review = styled.div`
@@ -11,11 +11,18 @@ export const Review = styled.div`
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    /* background-color: blue; */
     word-wrap: break-word;
 `
 
 export const ReviewHeading = styled.div`
     display: flex;
     justify-content: space-between;
+`
+
+export const ReviewTitle = styled.h1`
+    width: 80%;
+`
+export const recommended = styled.i`
+    color: red;
 `

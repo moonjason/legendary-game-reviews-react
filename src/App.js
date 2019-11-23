@@ -36,15 +36,23 @@ class App extends Component {
       }
     })
   }
-  logout = () => {
-    this.setState({
-      isLogged: false,
-      currentUser: {
-        id: "",
-        username: ""
-      }
-    })  
-    console.log("logout from App")
+  logout = async () => {
+    try {
+      const logoutUser = await (await fetch(`${process.env.REACT_APP_API_URL}/user/logout`, {
+        method: "GET",
+        credentials: "include"
+      })).json();
+      this.setState({
+        isLogged: false,
+        currentUser: {
+          id: "",
+          username: ""
+        }
+      })
+      console.log(logoutUser)
+    } catch(err) {
+      console.log(err);
+    }
   }
   render() {
     return (
