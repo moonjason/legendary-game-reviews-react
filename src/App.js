@@ -59,13 +59,17 @@ class App extends Component {
       }
     })
     console.log(logoutUser, "<-------------logoutUser")
-    this.setState({
-      isLogged: false,
-      currentUser: {
-        id: "",
-        username: ""
-      }
-    })
+    const parsedLogout = await logoutUser.json()
+    console.log(parsedLogout);
+    if(parsedLogout.status.code === 202){
+      this.setState({
+        isLogged: false,
+        currentUser: {
+          id: "",
+          username: ""
+        }
+      })
+    }
     console.log("logout from App")
   }
   setSearch = searchValue => {
@@ -79,7 +83,7 @@ class App extends Component {
         {
           this.state.isLogged
             ?
-            <LoggedNav logout={this.logout} />
+            <LoggedNav logout={this.logout}/>
             :
             <Nav />
         }

@@ -14,7 +14,7 @@ const LoggedNav = (props) => {
   return (
     <NavBar>
       <Link exact to="/games">Home</Link>
-      <Link exact to="/" onClick={props.logout}>Logout</Link>
+      <Link exact to="/" onClick={() => {props.logout()}}>Logout</Link>
     </NavBar>
   )
 }
