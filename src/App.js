@@ -88,10 +88,8 @@ class App extends Component {
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/login" render={() => <Login doUpdateCurrentUser={this.doUpdateCurrentUser} />}></Route>
           <Route exact path="/register" render={() => <Register doUpdateCurrentUser={this.doUpdateCurrentUser} />}></Route>
-          {/* <Route exact path={`${this.props.history.location.pathname}`} render={() => <GameContainer/>}></Route> */}
-          <Route exact path="/games" render={() => <GameContainer setSearch={this.setSearch}/>}></Route>
+          <Route exact path="/games/" render={() => <GameContainer setSearch={this.setSearch}/>}></Route>
           <Route exact path="/games/:id" render={() => <GamesShow currentUser={this.state.currentUser}/>}></Route>
-          {/* <Route exact path={`/games?search=${this.state.search}`} render={() => <GameContainer currentUser={this.state.currentUser}/>}/> */}
           <Route exact path={`/games/search/:query`} render={() => <SearchedGamesContainer search={this.state.search} setSearch={this.setSearch}/>}></Route>
           <Route component={My404} />
         </Switch>

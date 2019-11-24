@@ -92,7 +92,7 @@ class GamesShow extends Component {
                   />
                 : <Container1>
                     <GameDetails shownGame={this.state.shownGame} />
-                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} addReview={this.addReview}/> : ""}
+                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} addReview={this.addReview} shownGame={this.state.shownGame}/> : ""}
                     <ReviewList foundReviews={this.state.foundReviews} currentUser={this.props.currentUser} gameId={this.props.match.params.id} deleteReview={this.deleteReview}/>
                 </Container1>
             

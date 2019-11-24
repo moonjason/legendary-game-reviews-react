@@ -5,9 +5,33 @@ export const GameForm = styled.form`
     flex-direction: column;
     align-items: center;
     width: 40rem;
-    margin: 0 auto;
+    margin: 2rem auto;
+    background-color: #263142;
 `
 
-export const GameInput = styled.input`
-    width: 40rem;
+export const ReviewHeading = styled.h3`
+    color: white;
+    margin-top: 0.5rem;
+`
+
+export const ReviewTitle = styled.input`
+    font-size: 1.5rem;
+    width: 30rem;
+    height: ${props => props.height};
+    border: none;
+    margin: 1rem;
+    padding: 0.5rem;
+`
+
+export const ReviewBody = styled.textarea`
+    width: 30rem;
+    height: 10rem;
+    padding: 0.5rem;
+    resize: none;
+    border: none;
+`
+
+export const ReviewCheckbox = styled.div`
+    margin: 1rem;
+    color: white;
 `

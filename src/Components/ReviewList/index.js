@@ -4,7 +4,7 @@ import {
   Review,
   ReviewHeading,
   ReviewTitle,
-  
+  Recommended
 } from './style'
 
 
@@ -13,8 +13,8 @@ const ReviewList = (props) => {
     if (props.gameId === review.game_id) {
       return (
         <Review key={review.id}>
-          {review.is_positive ? <i class="fas fa-thumbs-up"> Recommended</i>
-              : <i className="fas fa-thumbs-down"> Not recommended</i>}
+          {review.is_positive ? <Recommended className="fas fa-thumbs-up"> Recommended</Recommended>
+              : <Recommended className="fas fa-thumbs-down"> Not recommended</Recommended>}
           <ReviewHeading>
             <h1>{review.title}</h1>
           </ReviewHeading>
