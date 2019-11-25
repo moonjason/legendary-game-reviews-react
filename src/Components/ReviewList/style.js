@@ -23,6 +23,9 @@ export const ReviewHeading = styled.div`
 export const ReviewTitle = styled.h1`
     width: 80%;
 `
-export const recommended = styled.i`
+export const Recommended = styled.i`
     color: red;
+    &.fa-thumbs-up {
+        color: green;
+    }
 `

@@ -32,6 +32,7 @@ export const Username = styled.p`
     text-decoration: none; 
 `
 export const Title = styled.p`
+    text-align: left;
     color: white;
     font-size: 30px;
     padding: .5% 14% ;

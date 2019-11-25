@@ -28,6 +28,9 @@ class GameContainer extends Component{
     this.getGames()
     window.addEventListener('scroll', this.atBottom)
   }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.atBottom)
+  }
   getGames = async () => {
       try {
       const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/1`, {
@@ -44,6 +47,7 @@ class GameContainer extends Component{
       }
   }
   loadMoreGames = async () => {
+    console.log("thisis gamecontiaer")
     if(this.state.loading) {
       return;
     }
@@ -87,7 +91,8 @@ class GameContainer extends Component{
     }
   }
   atBottom = () => {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 && !this.state.loading && this.props.match.params.id) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 && !this.state.loading) {
+      console.log("this is hitting")
       this.setState({
         page: this.state.page + 1
       })

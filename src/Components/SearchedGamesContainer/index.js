@@ -24,15 +24,15 @@ class SearchedGamesContainer extends Component{
     initialLoading: true,
   }
   componentDidMount(){
-    console.log("mounted")
     this.getGames()
     window.addEventListener('scroll', this.atBottom)
   }
   componentDidUpdate() {
     window.onpopstate = (e) => {
       this.setState({
-        search: this.props.match.params.query
+        search: this.props.match.params.query,
       })
+      window.location.reload(true);
       this.getGames();
     }
   }
@@ -45,27 +45,6 @@ class SearchedGamesContainer extends Component{
       this.setState({
         games: gameResponse.results,
         initialLoading: false
-      })
-      console.log(gameResponse.results);
-      } catch(err) {
-          console.log(err)
-      }
-  }
-  loadMoreGames = async () => {
-    if(this.state.loading) {
-      return;
-    }
-    try {
-      this.setState(prevState => ({
-        loading: true
-      }))
-      const gameResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/games/${this.state.page}`, {
-        method: "get",
-        credentials: "include",
-    })).json()
-      this.setState({
-        games: [...this.state.games, ...gameResponse.results],
-        loading: false
       })
       console.log(gameResponse.results);
       } catch(err) {
@@ -92,14 +71,6 @@ class SearchedGamesContainer extends Component{
       this.props.setSearch(this.props.match.params.query);
     } catch(err) {
       console.log(err)
-    }
-  }
-  atBottom = () => {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10) {
-      this.setState({
-        page: this.state.page + 1
-      })
-      this.loadMoreGames()
     }
   }
   render(){
