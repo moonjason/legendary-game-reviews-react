@@ -1,23 +1,21 @@
 import React from 'react'
-import { NavLink, Switch } from 'react-router-dom'
-
-import Button from '../Button'
-
 import {
   NavBar,
   Link,
   Username,
-  Title, 
+  Title,
+  UserDiv
 } from './style'
 
 const LoggedNav = (props) => {
-  console.log(props, "<-----------------------from Logged in Nav")
   return (
     <NavBar>
       <Title>Legendary Game Reviews</Title>
-      <Username>Welcome, {props.currentUser.username}</Username>
-      <Link exact to="/games">Home</Link>
-      <Link exact to="/" onClick={() => {props.logout()}}>Logout</Link>
+      <UserDiv>
+        <Username>Welcome, {props.currentUser.username}</Username>
+        <Link exact to="/games">Home</Link>
+        <Link exact to="/" onClick={() => {props.logout()}}>Logout</Link>
+      </UserDiv>
     </NavBar>
   )
 }

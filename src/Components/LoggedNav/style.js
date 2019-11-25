@@ -1,20 +1,25 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
+export const UserDiv = styled.div`
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto 1rem;
+`
+
 export const NavBar = styled.nav`
     width: 100%;
     height: 30%;
     background-color: black;
     display: flex;
-    justify-content: flex-end; 
-    margin: 0px;
     font-size: 20px;
     box-shadow: 0 4px 15px -2px black;
 `
 
 export const Link = styled(NavLink)`
     color: white;
-    padding: 1% 2%;
+    margin-left: 15px;
     font-family: Arial;
     text-decoration: none; 
     &:hover{
@@ -27,15 +32,16 @@ export const Link = styled(NavLink)`
 
 export const Username = styled.p`
     color: white;
-    padding: 1% 2%;
+    /* padding: 1% 2%; */
     font-family: Arial;
     text-decoration: none; 
 `
 export const Title = styled.p`
     text-align: left;
     color: white;
+    width: 60%;
     font-size: 30px;
-    padding: .5% 14% ;
+    padding: .5% 2% ;
     font-family: 'Racing Sans One', cursive;
     justify-content: flex-start;
     font-style: normal;

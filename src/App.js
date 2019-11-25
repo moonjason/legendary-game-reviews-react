@@ -56,6 +56,7 @@ class App extends Component {
         credentials: "include"
       })).json()
       if(logoutUser.status.code === 202){
+        localStorage.removeItem("user")
         this.setState({
           isLogged: false,
           currentUser: {
@@ -75,14 +76,13 @@ class App extends Component {
     })
   }
   render() {
+    console.log(this.state.currentUser)
     return (
       <>
         {
           this.state.isLogged
-            ?
-            <LoggedNav currentUser={this.state.currentUser} logout={this.logout} />
-            :
-            <Nav />
+            ? <LoggedNav currentUser={this.state.currentUser} logout={this.logout} />
+            : <Nav />
         }
         <Switch>
           <Route exact path="/" component={Home}></Route>

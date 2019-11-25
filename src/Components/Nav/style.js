@@ -14,7 +14,7 @@ export const NavBar = styled.nav`
 
 export const Link = styled(NavLink)`
     color: white;
-    padding: 1% 2%;
+    margin-left: 15px;
     font-family: Arial;
     text-decoration: none; 
     &:hover{
@@ -23,4 +23,21 @@ export const Link = styled(NavLink)`
     &.active{
         border-bottom: 2.5px solid #0D98BA;
     }
+`
+
+export const Title = styled.p`
+    text-align: left;
+    color: white;
+    width: 60%;
+    font-size: 30px;
+    padding: .5% 2% ;
+    font-family: 'Racing Sans One', cursive;
+    justify-content: flex-start;
+    font-style: normal;
+`
+export const UserDiv = styled.div`
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto 3%;
 `
