@@ -59,10 +59,7 @@ class App extends Component {
         localStorage.removeItem("user")
         this.setState({
           isLogged: false,
-          currentUser: {
-            id: "",
-            username: ""
-          }
+          currentUser: {}
         })
       }
       console.log(logoutUser)
