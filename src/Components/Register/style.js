@@ -6,7 +6,7 @@ export const BackgroundDiv = styled.div`
   text-align: center;
   display: block;
   margin: auto;
-  height: 27rem;
+  height: 29rem;
   background-color: white;
 `
 
@@ -50,4 +50,8 @@ export const Heading = styled.h1`
   color: white;
   font-family: 'Bangers', cursive; 
   padding: 4rem;   
+`
+
+export const Error = styled.span`
+  color: red;
 `

@@ -51,3 +51,7 @@ export const Heading = styled.h1`
   font-family: 'Bangers', cursive; 
   padding: 4rem;   
 `
+
+export const Error = styled.span`
+  color: red;
+`
