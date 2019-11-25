@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { withRouter } from 'react-router-dom';
-import { parse } from 'path';
 import { BackgroundDiv, Form, Box, Btn, Text, Heading, Error } from "./style"
 
 
