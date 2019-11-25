@@ -47,7 +47,6 @@ class GameContainer extends Component{
       }
   }
   loadMoreGames = async () => {
-    console.log("thisis gamecontiaer")
     if(this.state.loading) {
       return;
     }
@@ -85,7 +84,6 @@ class GameContainer extends Component{
       })
       this.props.setSearch(this.state.search);
       this.props.history.push(`/games/search/${this.state.search}`)
-      // this.props.history.push(`/games?search=${this.state.search}`)
     } catch(err) {
       console.log(err)
     }

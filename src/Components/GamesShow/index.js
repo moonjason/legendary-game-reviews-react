@@ -19,6 +19,7 @@ class GamesShow extends Component {
     state = {
         shownGame: {},
         foundReviews: [],
+        foundUsers: [],
         loadingGame: true,
         loadingReviews: true
     }
@@ -80,7 +81,18 @@ class GamesShow extends Component {
             foundReviews: this.state.foundReviews.filter(review => review.id !== id)
         })
     }
-
+    // getUsers = async () => {
+    //     const UserResponse = await (await fetch(`${process.env.REACT_APP_API_URL}/user/`, {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         } 
+    //     })).json();
+    //     console.log(UserResponse)
+    //     this.setState({
+    //         foundUsers: UserResponse.data,
+    //     })
+    // }   
     render() {
         return (
             this.state.loadingGame || this.state.loadingReviews

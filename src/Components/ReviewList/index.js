@@ -2,30 +2,43 @@ import React from 'react'
 import {
   Container2,
   Review,
+  UserDiv,
+  Username,
+  ReviewContent,
   ReviewHeading,
+  Recommended,
+  InterfaceDiv,
+  InterfaceButtons,
   ReviewTitle,
-  Recommended
+  ReviewBody
 } from './style'
 
 
 const ReviewList = (props) => {
   const reviews = props.foundReviews.map(review => {
-    if (props.gameId === review.game_id) {
+    if(props.gameId === review.game_id) {
       return (
         <Review key={review.id}>
-          {review.is_positive ? <Recommended className="fas fa-thumbs-up"> Recommended</Recommended>
-              : <Recommended className="fas fa-thumbs-down"> Not recommended</Recommended>}
-          <ReviewHeading>
-            <h1>{review.title}</h1>
-          </ReviewHeading>
-          <h3>{review.body}</h3>
-          {review.user_id.id === props.currentUser.id 
-            ? <>
-              <button>Edit</button> 
-              <button onClick={() => props.deleteReview(review.id)}>Delete</button>
-              </>
-            : ""
-          }
+          <UserDiv>
+            <Username>Posted By: {review.user_id.username}</Username>
+          </UserDiv>
+          <ReviewContent>
+            <ReviewHeading>
+              {review.is_positive ? 
+                <Recommended className="fas fa-thumbs-up"> Recommended</Recommended>
+                : <Recommended className="fas fa-thumbs-down"> Not recommended</Recommended>
+              }
+              {review.user_id.id === props.currentUser.id ? 
+                <InterfaceDiv>
+                    <InterfaceButtons>Edit</InterfaceButtons> 
+                    <InterfaceButtons onClick={() => props.deleteReview(review.id)}>Delete</InterfaceButtons>
+                </InterfaceDiv>
+                  : null
+              }
+            </ReviewHeading>
+            <ReviewTitle>{review.title}</ReviewTitle>
+            <ReviewBody>{review.body}</ReviewBody>
+          </ReviewContent>
         </Review>
       )
     }
