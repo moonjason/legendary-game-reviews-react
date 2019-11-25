@@ -27,23 +27,17 @@ class Login extends Component {
                 'Content-Type': "application/json"
             }
         })
-        console.log(loginIn, "<--------Login")
         const parsedLogin = await loginIn.json()
-        console.log(parsedLogin, "<-------parsedLogin")
-
         if (parsedLogin.status.message === "Success") {
             this.setState({
                 session: parsedLogin.session.username
             })
-            console.log(this.state, "<--------------------state after login")
             localStorage.setItem('user', JSON.stringify(parsedLogin.session))
-            console.log("Login success")
             this.props.doUpdateCurrentUser(parsedLogin.data)
             this.props.history.push('/games')
         } else {
-            console.log("Wrong password")
             this.setState({
-                message: "wrong username or password"
+                message: "Incorrect username or password"
             })
         }
     }

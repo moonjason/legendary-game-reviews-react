@@ -32,19 +32,16 @@ class Register extends Component {
             }
         })
         const parsedResponse = await registerResponse.json();
-        console.log(parsedResponse, "<---------------------------------register parsed response")
         if (parsedResponse.status.message === 'Success') {
             this.setState({
                 session: parsedResponse.session.username
             })
-            console.log(this.state, "<-----------state from register")
             localStorage.setItem('user', JSON.stringify(parsedResponse.session))
-            console.log('Register Success')
             this.props.doUpdateCurrentUser(parsedResponse.data)
             this.props.history.push('/games')
         } else {
             this.setState({
-                message: "Email or Username already taken"
+                message: "Email or Username already exists"
             })
         }
     }

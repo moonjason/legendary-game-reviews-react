@@ -35,6 +35,7 @@ export const Title = styled.p`
     justify-content: flex-start;
     font-style: normal;
 `
+
 export const UserDiv = styled.div`
     width: 40%;
     display: flex;
