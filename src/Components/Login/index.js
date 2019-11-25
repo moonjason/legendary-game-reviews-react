@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { BackgroundDiv, Form, Box, Btn, Text, Heading } from "./style"
+import { BackgroundDiv, Form, Box, Btn, Text, Heading, Error } from "./style"
 
 class Login extends Component {
     state = {
         username: '',
         password: '',
-        session: {}
+        session: {},
+        message: ""
     };
 
     handleChange = (e) => {
@@ -39,6 +40,11 @@ class Login extends Component {
             console.log("Login success")
             this.props.doUpdateCurrentUser(parsedLogin.data)
             this.props.history.push('/games')
+        } else {
+            console.log("Wrong password")
+            this.setState({
+                message: "wrong username or password"
+            })
         }
     }
     render() {
@@ -52,6 +58,9 @@ class Login extends Component {
                         <Text>Password:</Text>
                         <Box type="password" name="password" placeholder="Password" onChange={this.handleChange} />
                         <Btn type="submit">Login</Btn>
+                        <Error>
+                            <p>{this.state.message}</p>
+                        </Error>
                     </Form>
                 </BackgroundDiv>
             </>

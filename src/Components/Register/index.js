@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { withRouter } from 'react-router-dom';
 import { parse } from 'path';
-import { BackgroundDiv, Form, Box, Btn, Text, Heading } from "./style"
+import { BackgroundDiv, Form, Box, Btn, Text, Heading, Error } from "./style"
 
 
 class Register extends Component {
@@ -10,8 +10,8 @@ class Register extends Component {
         username: '',
         password: '',
         email: '',
-        session: {}
-        // isLogged: false
+        session: {},
+        message: ""
     }
 
     handleChange = (e) => {
@@ -42,6 +42,10 @@ class Register extends Component {
             console.log('Register Success')
             this.props.doUpdateCurrentUser(parsedResponse.data)
             this.props.history.push('/games')
+        } else {
+            this.setState({
+                message: "Email or Username already taken"
+            })
         }
     }
 
@@ -58,6 +62,9 @@ class Register extends Component {
                         <Text>Email:</Text>
                         <Box type="email" name="email" placeholder="Email" onChange={this.handleChange} />
                         <Btn type="submit">Login</Btn>
+                        <Error>
+                            <p>{this.state.message}</p>
+                        </Error>
                     </Form>
                 </BackgroundDiv>
             </>

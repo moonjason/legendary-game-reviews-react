@@ -56,6 +56,7 @@ class App extends Component {
         credentials: "include"
       })).json()
       if(logoutUser.status.code === 202){
+        localStorage.removeItem("user")
         this.setState({
           isLogged: false,
           currentUser: {
