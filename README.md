@@ -11,3 +11,7 @@
 - Shown video game lists out all reviews written for that specific game
 - Logged user may write their own review 
 - Author of review may choose to delete it 
+
+![Home Page](./public/ss1.png)
+![Games](./public/ss2.png)
+![Reviews](./public/ss3.png)
