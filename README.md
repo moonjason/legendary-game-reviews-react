@@ -1,4 +1,4 @@
-# Legendary Game Reviews - Front End 
+# Legendary Game Reviews
 
 ### Contributors: Jason Moon, Hassen Hassen, and Luke Chang
 
