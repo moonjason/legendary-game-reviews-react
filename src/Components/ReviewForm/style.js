@@ -35,3 +35,22 @@ export const ReviewCheckbox = styled.div`
     margin: 1rem;
     color: white;
 `
+
+export const ReviewButton = styled.button`
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+`
+
+export const StyledError = styled.span`
+    color: red;
+    margin: 0.5rem;
+`

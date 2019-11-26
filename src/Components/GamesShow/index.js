@@ -20,6 +20,7 @@ class GamesShow extends Component {
         shownGame: {},
         foundReviews: [],
         foundUsers: [],
+        errorMessage: "",
         loadingGame: true,
         loadingReviews: true
     }
@@ -58,6 +59,13 @@ class GamesShow extends Component {
     }   
     addReview = async (e, newReview) => {
         e.preventDefault()
+        console.log(newReview);
+        if(newReview.title === "" || newReview.body === "") {
+            this.setState({
+                errorMessage: "Please be as descriptive as possible"
+            })
+            return;
+        }
         const review = await (await fetch(`${process.env.REACT_APP_API_URL}/api/v1/reviews/`, {
             method: "POST",
             credentials: "include",
@@ -65,9 +73,10 @@ class GamesShow extends Component {
             headers: {
                 "Content-Type": "application/json"
             }
-        })).json()
+        })).json();
         this.setState({
-            foundReviews: [...this.state.foundReviews, review.data]
+            foundReviews: [...this.state.foundReviews, review.data],
+            errorMessage: ""
         })
         console.log(review);
     }   
@@ -92,7 +101,7 @@ class GamesShow extends Component {
                   />
                 : <Container1>
                     <GameDetails shownGame={this.state.shownGame} />
-                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} addReview={this.addReview} shownGame={this.state.shownGame}/> : ""}
+                    {this.props.currentUser.username ? <ReviewForm currentUser={this.props.currentUser} addReview={this.addReview} shownGame={this.state.shownGame} errorMessage={this.state.errorMessage}/> : null}
                     <ReviewList foundReviews={this.state.foundReviews} currentUser={this.props.currentUser} gameId={this.props.match.params.id} deleteReview={this.deleteReview}/>
                 </Container1>
             
