@@ -30,7 +30,6 @@ const ReviewList = (props) => {
               }
               {review.user_id.id === props.currentUser.id ? 
                 <InterfaceDiv>
-                    <InterfaceButtons>Edit</InterfaceButtons> 
                     <InterfaceButtons onClick={() => props.deleteReview(review.id)}>Delete</InterfaceButtons>
                 </InterfaceDiv>
                   : null
