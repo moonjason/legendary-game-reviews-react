@@ -1,8 +1,8 @@
 # Legendary Game Reviews - Front End 
 
-### By Jason Moon, Hassen Hassen, and Luke Chang
+### Contributors: Jason Moon, Hassen Hassen, and Luke Chang
 
-### Using React, Styled-Components, React-Spinners, and Font-Awesome
+### Using React, React-Router, Styled-Components, React-Spinner, and Font-Awesome
 
 ### User Story
 - Register for an account 
