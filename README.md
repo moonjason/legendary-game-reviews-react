@@ -2,6 +2,10 @@
 
 ### Contributors: Jason Moon, Hassen Hassen, and Luke Chang
 
+[Full Deployment on Heroku](https://legendary-game-reviews.herokuapp.com "Full Deployment Heroku")
+
+[Back-End Repository](https://github.com/moonjason/legendary-game-reviews-flask "Back-end Repository")  
+
 ### Using React, React-Router, Styled-Components, React-Spinner, and Font-Awesome
 
 ### User Story
