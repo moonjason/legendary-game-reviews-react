@@ -8,7 +8,8 @@ A video game reviews site where users can register and express their opinions on
 
 [Back-End Repository](https://github.com/moonjason/legendary-game-reviews-flask "Back-end Repository")  
 
-### Using React, React-Router, Styled-Components, React-Spinner, RAWG API, and Font-Awesome
+### Front - End: React, React-Router, Styled-Components, React-Spinner, RAWG API, and Font-Awesome
+### Back - End: Python, Flask, Peewee, SQLite3/PostgreSQL
 
 ### User Story
 - Register for an account 
